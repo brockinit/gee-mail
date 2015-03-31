@@ -1,18 +1,64 @@
+<!--    Coding Challenge: GeeMail Application
+	Brock Lanoza
+        DevLeague 
+-->
+
 <html>
-	<head>
+	
+    <head>
+    
+    <title>GeeMail</title>
+    
+	<!--JavaScript Generator-->
+	
 		<script src="js/mail-generator.js"></script>
+		
+	<!--CSS-->
 		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
-      window.onload = function(){
+		
+     	<!--JavaScript Begin-->
+    
+    	<script>
+      	window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+		
+			// Access pre-populated data stored in the "window.geemails" variable. 
+			// Each object in the array has the following properties
+			// date, subject, sender, body 
+			
+// Accessing prepopulated data in the "windows.geemails" variable
+
+	for (var i = 0 i < window.geemails.length; i++) {
+        
+        var message = retrieveEmail(window.geemails[i]);
+        
+        var separateEmail = document.getElementByID("main");
+        
+        separateEmail.apendchild(message);
+        
+        console.log(window.geemails[i]);
+}
+
+// 		
+		
         
       };
     </script>
+
 	</head>
-	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
+	<body> 
+    
+    <div class ="header">
+    	<!--Inbox Counter-->
+        
+        
+        <!--Logo-->
+        <img src="http://www.theinquirer.net/IMG/853/275853/gmail-logo-2013.png" width="128" height="128">
+
+        <!--Name of App-->
+        <h1>GeeMail</h1>
+    		
+	<div class="container" id="main"></div>
 	</body>
 </html>
