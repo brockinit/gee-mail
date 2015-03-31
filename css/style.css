@@ -4,8 +4,8 @@
     /* This layout will mimic the basic structure seen in most email applications. Logo and name will be in the top left corner. Messages will be listed with the following elements displayed from left to right: sender, subject, date. */
 
 *{
-	background: #ffffff
-	color: #666
+	background: #ffffff;
+	color: #666;
 	font-family: Comic Sans, cursive, sans-serif;
 }
 
