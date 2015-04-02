@@ -1,6 +1,7 @@
 /* CSS Document */
 
-    /* This layout will mimic the basic structure seen in most email applications. Logo and name will be in the top left corner. Messages will be listed with the following elements displayed from left to right: sender, subject, date. */
+/* This layout will mimic the basic structure seen in most email applications. Logo and name will be in the top left corner. 
+Messages will be listed with the following elements displayed from left to right: sender, subject, date. */
 
 *{
     background: #ffffff;
@@ -8,10 +9,18 @@
     font-family: Optima,Segoe,"Segoe UI",Candara,Calibri,Arial;
 }
 
+/* Table for section labels */
+
+table {
+	margin-top: 25px;
+	font-weight: bold;
+	font-size: 16;
+}
+
 /* Container */ 
 
 .container {
-	text-align: center; 
+	text-align: left; 
 	margin: 0px auto; 
 }
 
@@ -23,13 +32,13 @@
 	text-align: left;
 	color: #666;
     margin-left: 30px;
+    margin-bottom: 15px;
 }
 
-/* Images */
+/* Name and Inbox Counter */
 
-.img {
-    margin-bottom: 20px;
-    margin-left: 60px;
+h3 {
+	display:inline;
 	text-align: left;
 }
 
@@ -44,18 +53,25 @@
 .senderSpace {
 	float: left;
 	width: 33%;
-	margin-top: 30px; 
+	margin-top: 20px; 
 }
 
 /* subject is in the center */
 
 .subjectSpace {
-    font-weight: bold;
     display: inline-block; 
     width: 34%;
-    height: 50px;
+    height: 40px;
     margin-top: 20px;
-    font-size: 20px; 
+    font-size: 16px; 
+}
+
+/* Borders to help differentiate between messages */
+
+.yourFlaggedMail {
+	border-top: 2px solid; 
+	padding: 5px;
+	margin: 0 auto;
 }
 
 /* date is on the far right */
@@ -63,7 +79,7 @@
 .dateSpace {
 	float: right; 
 	width: 33%;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 
@@ -76,13 +92,5 @@
 	width: 66%;
 	font-size: 14px;
 	margin-bottom: 20px;
-	margin: 0 auto;
-}
-
-/* Borders to help differentiate between messages */
-
-.yourFlaggedMail {
-	border-width: 1px thin; 
-	padding: 5px;
 	margin: 0 auto;
 }
