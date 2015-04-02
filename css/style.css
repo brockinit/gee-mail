@@ -1,12 +1,11 @@
-@charset "UTF-8";
 /* CSS Document */
 
     /* This layout will mimic the basic structure seen in most email applications. Logo and name will be in the top left corner. Messages will be listed with the following elements displayed from left to right: sender, subject, date. */
 
 *{
-	background: #ffffff;
+    background: #ffffff;
 	color: #666;
-	font-family: Comic Sans, cursive, sans-serif;
+    font-family: Optima,Segoe,"Segoe UI",Candara,Calibri,Arial;
 }
 
 /* Container */ 
@@ -23,13 +22,15 @@
 	font-weight: bolder;
 	text-align: left;
 	color: #666;
+    margin-left: 30px;
 }
 
 /* Images */
 
 .img {
+    margin-bottom: 20px;
+    margin-left: 60px;
 	text-align: left;
-	display: inline;
 }
 
 /* to show the full email message */
@@ -40,7 +41,7 @@
 
 /* sender on the far left */ 
 
-.sender {
+.senderSpace {
 	float: left;
 	width: 33%;
 	margin-top: 30px; 
@@ -48,17 +49,18 @@
 
 /* subject is in the center */
 
-.subjectLine {
-	font-weight: bolder; 
-	display: inline-block; 
-	width: 33%;
-	margin-top: 30px;
-	font-size: 18px; 
+.subjectSpace {
+    font-weight: bold;
+    display: inline-block; 
+    width: 34%;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 20px; 
 }
 
 /* date is on the far right */
 
-.date {
+.dateSpace {
 	float: right; 
 	width: 33%;
 	margin-top: 30px;
@@ -67,7 +69,7 @@
 
 /* the body of the message that appears upon click */
 
-.body {
+.bodySpace {
 	color:#000;
 	text-align: center;
 	vertical-align: middle;
@@ -79,9 +81,8 @@
 
 /* Borders to help differentiate between messages */
 
-.messageDivide {
-	border-top: 1px thin; 
+.yourFlaggedMail {
+	border-width: 1px thin; 
 	padding: 5px;
 	margin: 0 auto;
 }
-
