@@ -1,64 +1,184 @@
 <!--    Coding Challenge: GeeMail Application
-	Brock Lanoza
+        Brock Lanoza
         DevLeague 
 -->
 
+
 <html>
-	
-    <head>
-    
+<head> 
     <title>GeeMail</title>
     
-	<!--JavaScript Generator-->
-	
-		<script src="js/mail-generator.js"></script>
-		
-	<!--CSS-->
-		<link href="css/style.css" rel="stylesheet" media="screen">
-		
-     	<!--JavaScript Begin-->
+
+<!--JS Source-->
+   
+<script src="/Users/brocklanoza/Documents/gee-mail/js/mail-generator.js"></script>
+
+<!--CSS-->
+
+<link rel="stylesheet" href="/Users/brocklanoza/documents/gee-mail/css/style.css" type="text/css" media="screen" charset="utf-8">
     
-    	<script>
-      	window.onload = function(){
+<!--Begin JS -->
+    <script>
+          window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-		
-			// Access pre-populated data stored in the "window.geemails" variable. 
-			// Each object in the array has the following properties
-			// date, subject, sender, body 
-			
+        
+            // Access pre-populated data stored in the "window.geemails" variable. 
+            // Each object in the array has the following properties
+            // date, subject, sender, body 
+            
 // Accessing prepopulated data in the "windows.geemails" variable
 
-	for (var i = 0 i < window.geemails.length; i++) {
-        
-        var message = retrieveEmail(window.geemails[i]);
-        
-        var separateEmail = document.getElementByID("main");
-        
-        separateEmail.apendchild(message);
-        
-        console.log(window.geemails[i]);
-}
+          for (var i=0; i < window.geemails.length; i++); {
+              
+     // Defining variable "yourFlaggedMail" to be used in printing out emails
+            
+            var yourFlaggedMail = retrieveEmail(window.geemails[i]);      
+             
+    // Creating a separate box for each email using a div already employed 
 
-// 		
-		
-        
-      };
-    </script>
+            var emailSpace = document.getElementById("box");
+            
+    // Adding generated mail to each designated email space 
 
-	</head>
-	<body> 
+            emailSpace.appendChild(yourFlaggedMail);
+            
+    // Logging emails to the "window.geemails" variable
+            
+            console.log(window.geemails[i]);
+    }
+
+// Adding inbox counter that actively displays the total number of emails
+
+    // First, we must create an element to hold the value of the total 
     
-    <div class ="header">
-    	<!--Inbox Counter-->
+            var inboxTotal = document.getElementById("inbox");
+            
+    // Time to define what determines the number inside of this element
+    
+            var totalEmails = window.geemails.length;
+            
+    // This next line will be used to create a value for the "totalEmails" variable that we can insert into the inbox element
+    
+            var runningTotal = document.createTextNode(totalEmails);
+            
+    // Using the text node we just created, we will add the total number of emails to the "inboxTotal" element so that it is displayed on the app
+            
+            inboxTotal.appendChild(runningTotal);
+
+// In order to generate a new message every so often, there must be a designated setInterval function 
+
+
+
+// The page needs a function that will decide how each email's information is retrieved
+
+        function getInfo(theText,theClass) {
+            
+    // Similar to the inbox counter, we must create an element that will hold the email's info (sender,subject,date,message)
+    
+            var infoBox = document.createElement("div");
+    
+    // That element could use a text node to hold the actual information
+    
+            var realInfo = document.createTextNode("info");
+            
+    // Adding the email text to the info box
+    
+            infoBox.appendChild(realInfo); 
+            
+    // We also need the class name so that our content ends up following the proper positioning rules 
+    
+            infoBox.className += theClass;
+            
+    // With the info in place, let's print it
+    
+            return infoBox;
+            
+        };     
         
+// Now we will pull the randomly generated information from the JS page and assign it to different areas of the web page
+
+    // Starting the function 
+    
+        function retrieveEmail(message) {
+            
+    // Creating a div to act as the emailSpace
+    
+            var yourFlaggedMail = document.createElement("div");
+            
+    // sender section
+    
+            var sender = getInfo(message["sender"], "senderSpace";
+            
+    // subject section
+    
+            var subject = getInfo(message["subject"], "subjectSpace";
+            
+    // date section 
+    
+            var date = getInfo(message["date"], "dateSpace";
+            
+    // body section
+    
+            var body = getInfo(message["body"], "bodySpace keepHidden");
+            
+// To form the whole message, all the parts must be added together
+
+            yourFlaggedMail.className += 'yourFlaggedMail';
+            
+            yourFlaggedMail.appendChild(sender);
+            
+            yourFlaggedMail.appendChild(subject);
+            
+            yourFlaggedMail.appendChild(date);
+            
+            yourFlaggedMail.appendChild(body);
+            
+// We need to find a way to display the body text of the email upon a user click. Let's add an event listener.
+
+    // Adding an event listener 
+    
+           yourFlaggedMail.addEventListener("click", function() { 
+            
+    // emailSpace needs to be printed
+    
+            console.log(this);
+    
+    // This varible will retrieve the body text of the email
+    
+            var bodyToggle = this.getElementsByClassName("bodySpace");
+            
+    // Now, we need access this variable so that the body may be revealed 
+    
+            bodyToggle[0].classList.toggle('keepHidden');
+            
+    // Printing the body 
+    
+            console.log(body);
+            
+            })
+
+// Bringing foward yourFlaggedMail
+
+        return yourFlaggedMail;
+};
+        
+      </script>
+</head>
+<body>
+    <div class="header">
         
         <!--Logo-->
-        <img src="http://www.theinquirer.net/IMG/853/275853/gmail-logo-2013.png" width="120" height="120">
-
-        <!--Name of App-->
-        <h1>GeeMail</h1>
-    </div>		
-	<div class="container" id="main"></div>
-	</body>
+         <div class="img">
+        <img src="http://google.pepperdine.edu/images/gmail.png" width ="125px" height="125px">
+         </div>
+        
+        <!--Name and inbox counter-->
+        
+        GeeMail
+        Inbox(<span id="inbox"></span>) <!--Using predefined div from JS head-->
+        
+    </div>
+    <div class="container" id="box"></div>
+</body>
 </html>
