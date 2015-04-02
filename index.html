@@ -10,14 +10,15 @@
     
 
 <!--JS Source-->
-   
-<script src="/Users/brocklanoza/Documents/gee-mail/js/mail-generator.js"></script>
+    
+<script src="js/mail-generator.js"></script>
 
 <!--CSS-->
 
-<link rel="stylesheet" href="/Users/brocklanoza/documents/gee-mail/css/style.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
     
-<!--Begin JS -->
+<!--Begin JavaScript-->
+
     <script>
           window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
@@ -29,7 +30,7 @@
             
 // Accessing prepopulated data in the "windows.geemails" variable
 
-          for (var i=0; i < window.geemails.length; i++); {
+          for (var i = 0; i < window.geemails.length; i++) {
               
      // Defining variable "yourFlaggedMail" to be used in printing out emails
             
@@ -68,11 +69,48 @@
 
 // In order to generate a new message every so often, there must be a designated setInterval function 
 
-
+    // Naming the function that will generate the new message
+    
+        function oneInterval() {
+            
+    // Let's initialize "newMessage" with the pre exisiting function, "getNewMessage"
+    
+        var newMessage = getNewMessage();
+        
+    // This will be our method for retrieving a new email 
+    
+        var yourFlaggedMail = retrieveEmail(newMessage);
+        
+    // Creating an element to store the new message using a div we have already defined 
+    
+        var entireMessage = document.getElementById("box");
+        
+    // Almost there...now to add the retrieved message to the element we created 
+    
+        entireMessage.appendChild(yourFlaggedMail);
+        
+    // Every interval will increase the total number of emails by 1
+    
+        totalEmails++;
+        
+    // This will be responsible for updating our displayed inbox total number
+    
+        inboxTotal.innerHTML = totalEmails;
+        
+    // Finish it up by printing the newly created email
+    
+        console.log(yourFlaggedMail);
+        
+        };
+        
+    // This inbox will receive a new email every 8 seconds 
+       
+       setInterval(oneInterval, 8000);
+}
 
 // The page needs a function that will decide how each email's information is retrieved
 
-        function getInfo(theText,theClass) {
+        function getInfo(info,theClass) {
             
     // Similar to the inbox counter, we must create an element that will hold the email's info (sender,subject,date,message)
     
@@ -80,43 +118,43 @@
     
     // That element could use a text node to hold the actual information
     
-            var realInfo = document.createTextNode("info");
+            var realInfo = document.createTextNode(info);
             
-    // Adding the email text to the info box
+    // We need the class name so that our content ends up following the proper positioning rules
     
-            infoBox.appendChild(realInfo); 
+            infoBox.className += theClass; 
             
-    // We also need the class name so that our content ends up following the proper positioning rules 
+    // Also we need to add the actual text to the element  
     
-            infoBox.className += theClass;
+            infoBox.appendChild(realInfo);
             
     // With the info in place, let's print it
     
             return infoBox;
-            
-        };     
+           
+ };     
         
-// Now we will pull the randomly generated information from the JS page and assign it to different areas of the web page
+// Now we will pull the randomly generated information from the JS page and assign it to different areas of the application
 
     // Starting the function 
     
         function retrieveEmail(message) {
             
-    // Creating a div to act as the emailSpace
+    // Creating a div to act as yourFlaggedMail
     
             var yourFlaggedMail = document.createElement("div");
             
     // sender section
     
-            var sender = getInfo(message["sender"], "senderSpace";
+            var sender = getInfo(message["sender"], "senderSpace");
             
     // subject section
     
-            var subject = getInfo(message["subject"], "subjectSpace";
+            var subject = getInfo(message["subject"], "subjectSpace");
             
     // date section 
     
-            var date = getInfo(message["date"], "dateSpace";
+            var date = getInfo(message["date"], "dateSpace");
             
     // body section
     
@@ -140,7 +178,7 @@
     
            yourFlaggedMail.addEventListener("click", function() { 
             
-    // emailSpace needs to be printed
+    // yourFlaggedMail needs to be printed
     
             console.log(this);
     
@@ -158,27 +196,35 @@
             
             })
 
-// Bringing foward yourFlaggedMail
+// Bringing foward yourFlaggedMail to the user
 
         return yourFlaggedMail;
 };
         
       </script>
 </head>
-<body>
-    <div class="header">
+    <body>
+        <div class="header">
         
-        <!--Logo-->
-         <div class="img">
-        <img src="http://google.pepperdine.edu/images/gmail.png" width ="125px" height="125px">
-         </div>
+            <!--Logo-->
+            
+            <img src="http://google.pepperdine.edu/images/gmail.png" width ="125px" height="125px">
         
-        <!--Name and inbox counter-->
+            <!--Name and inbox counter-->
         
-        GeeMail
-        Inbox(<span id="inbox"></span>) <!--Using predefined div from JS head-->
+            <h3>GeeMail
+            Inbox(<span id="inbox"></span>)</h3> <!--Using predefined div from JS head-->
+
+            <!--Section Labels-->
+            <table>
+                <tr>
+                        <td align ="left" width="300">Sender</td>
+                        <td align ="center" width="300">Subject</td>    
+                        <td align="right" width="300">Date</td>
+                </tr>
+            </table>
         
-    </div>
-    <div class="container" id="box"></div>
-</body>
+        </div>
+        <div class="container" id="box"></div>
+    </body>
 </html>
