@@ -94,3 +94,12 @@ h3 {
 	margin-bottom: 20px;
 	margin: 0 auto;
 }
+
+/* From here down, rules will apply to the login page */
+
+.headerLogin{
+	text-align: center;
+	margin-top: 75px;
+	font-weight: bold;
+	font-size: 18px;
+}
