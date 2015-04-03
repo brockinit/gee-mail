@@ -1,0 +1,57 @@
+<!--This will be the login page that loads first. 
+	Upon successful login, users will be taken to the email inbox-->
+
+
+<html>
+
+	<head>
+
+		<title>
+		Welcome to GeeMail!
+		</title>
+
+<!--CSS-->
+
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
+
+</head>
+	<body>
+		<div class="headerLogin">
+
+		<img src="http://google.pepperdine.edu/images/gmail.png">
+		<h1>Welcome to GeeMail!</h1>
+
+<!--Here we will place the login form-->
+		<form name="login">
+		Username<input type="text" name="userid"/>
+		Password<input type="password" name="pswrd"/>
+		<input type="button" onclick="check(this.form)" value="Login"/>
+		<input type="reset" value="Cancel"/>
+		</form>
+		</div>
+
+<!--This is the script that will authenticate the user-->
+
+<script>
+
+// Beginning the function used to check user credentials 
+
+	function check(form) {
+
+ // If the user's username and password match the required values...
+ 		if(form.userid.value == "devleague" && form.pswrd.value == "howzitbrah") {
+ 
+ // Then open the email inbox account!    		
+    		window.open('index.html')
+
+  	}
+ // Otherwise... 		
+ 		else {
+ // Tell them they were wrong!
+   			alert("Invalid Username or Password!")
+    }
+}
+</script>
+	
+	</body>
+</html>
