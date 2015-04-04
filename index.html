@@ -5,17 +5,16 @@
 
 
 <html>
-<head> 
+   <head> 
     <title>GeeMail</title>
     
-
-<!--JS Source-->
+        <!--JS Source-->
     
-<script src="js/mail-generator.js"></script>
+        <script src="js/mail-generator.js"></script>
 
-<!--CSS-->
+        <!--CSS-->
 
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
     
 <!--Begin JavaScript-->
 
@@ -196,10 +195,43 @@
             
             })
 
-// Bringing foward yourFlaggedMail to the user
+//Attempted to add additional onClick function to create a individual element for each email so that they could 
+//be selected and deleted. Does not currently work.
+
+           yourFlaggedMail.onClick=function() {
+                var selectedMessage = document.createElement("selectedBox");
+                document.getElementById("box").appendChild(selectedMessage);
+
+
+           };
+
+    // Bringing foward yourFlaggedMail
 
         return yourFlaggedMail;
 };
+
+// This next function will be used to delete selected items from the mailbox
+
+        function deleteMessage() {
+
+    // Retrieving the newly created element that represents an email that is clicked on 
+
+                var select = document.getElementById("selectedBox");
+    
+    // Asking the user to confirm whether or not they want to actually delete the email
+
+                var choice = confirm("Are you sure you want to delete this message?");
+    
+    // if statement used to judge the user's response
+
+                if (choice === true) {
+
+    // If the user confirms their selection, the message will be deleted 
+
+                select.remove();
+
+    }
+}
         
       </script>
 </head>
@@ -214,17 +246,19 @@
         
             <h3>GeeMail
             Inbox(<span id="inbox"></span>)</h3> <!--Using predefined div from JS head-->
+           
+            <!--Trash button for deleting messages-->
 
+            <button onclick= deleteMessage()><img src="http://iconizer.net/files/Devine_icons/orig/Trash-Recyclebin-Empty-Closed.png" width="40px" height="40px"></button>
+            
             <!--Section Labels-->
-            <table>
-                <tr>
-                        <td align ="left" width="300">Sender</td>
-                        <td align ="center" width="300">Subject</td>    
-                        <td align="right" width="300">Date</td>
-                </tr>
-            </table>
+            <table><tr>
+                <td align ="left" width="300">Sender</td>
+                <td align ="center" width="300">Subject</td>    
+                <td align="right" width="300">Date</td>
+            </tr></table>
         
         </div>
-        <div class="container" id="box"></div>
+        <div class="container" id="box"><div id="selectedBox"></div></div>
     </body>
 </html>
